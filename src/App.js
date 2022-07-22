@@ -16,7 +16,7 @@ function App() {
       params.append('address', inputRef.current.value);
       params.append('token', captcha)
 
-      const response = await fetch('http://localhost:8080/api/claimTokens', {
+      const response = await fetch('http://dragonapi.space:8080/api/claimTokens', {
           method: 'POST',
           body: params,
           headers: {
