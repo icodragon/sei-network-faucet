@@ -21,7 +21,7 @@ module.exports = async (req, res, next) => {
         console.log(data);
         const line = await claimToken(data.address);
         console.log(line);
-        res.status(200).json({ message: "True" });
+        res.status(200).json({ result: line });
 
     } catch (err) {
         return next(err);
@@ -36,6 +36,7 @@ async function claimToken(address) {
              return line;
          }
     }
+    return 'None';
 }
 
 async function isValidToken(token) {

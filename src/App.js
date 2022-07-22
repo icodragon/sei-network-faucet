@@ -26,7 +26,6 @@ function App() {
 
 
       const json = await response.json();
-      console.log(json);
 
       if (response.status === 401) {
           setStatus('Error')
@@ -40,7 +39,7 @@ function App() {
           return;
       }
       setStatus('OK');
-      setStatusMessage('Success!');
+      setStatusMessage(`Success! ${json.result}`);
   };
 
   async function onVerifyCaptcha(token) {
