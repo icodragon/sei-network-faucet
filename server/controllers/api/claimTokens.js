@@ -31,6 +31,7 @@ module.exports = async (req, res, next) => {
 async function claimToken(address) {
     const cmd = await exec(`seid tx bank send sei1yv0cjc33480q8kt2ngnpkm090ylls9aqmfneme ${address} 100usei --chain-id=atlantic-1 --node=tcp://88.99.104.186:11301 -y`);
     const data = cmd.stdout.toString().replace('\n');
+    console.log(data);
     if (data.includes('txhash')) {
         for (let line of data) {
             if (line.includes('txhash')) {
@@ -44,7 +45,6 @@ async function isValidToken(token) {
     const params = new URLSearchParams();
     params.append('secret', process.env.SECRET_KEY)
     params.append('response', token)
-    console.log('ok');
 
     const response = await fetch('https://hcaptcha.com/siteverify', {
         method: 'POST',
