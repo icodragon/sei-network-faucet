@@ -10,6 +10,7 @@ module.exports = async (req, res, next) => {
         const data = req.body;
         if (!await isValidToken(data.token)) {
             res.status(401).json({ message: "Error captcha" });
+            return;
         }
         console.log(process.env.SECRET_KEY);
         if (addresses.includes(data.address)) {
@@ -20,6 +21,10 @@ module.exports = async (req, res, next) => {
         }
         console.log(data);
         const line = await claimToken(data.address);
+        if (line === 'None') {
+            res.status(403).json({ message: "Probably the incorrect address" });
+            return;
+        }
         console.log(line);
         res.status(200).json({ result: line });
 

@@ -38,6 +38,13 @@ function App() {
           setStatusMessage('You have already claimed tokens');
           return;
       }
+
+      if (response.status === 403) {
+        setStatus('Error')
+        setStatusMessage('Probably the incorrect address');
+        return;
+    }
+
       setStatus('OK');
       setStatusMessage(`Success! ${json.result}`);
   };
