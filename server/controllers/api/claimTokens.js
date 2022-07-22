@@ -18,7 +18,8 @@ module.exports = async (req, res, next) => {
             addresses.push(data.address);
         }
         console.log(data);
-        await claimToken(data.address);
+        const line = await claimToken(data.address);
+        console.log(line);
         res.status(200).json({ message: "True" });
 
     } catch (err) {
@@ -28,7 +29,15 @@ module.exports = async (req, res, next) => {
 
 async function claimToken(address) {
     exec(`seid tx bank send sei1yv0cjc33480q8kt2ngnpkm090ylls9aqmfneme ${address} 100usei --chain-id=atlantic-1 --node=tcp://88.99.104.186:11301 -y`, (error, stdout, stderr) => {
-        console.log(`stdout: ${stdout}`);
+        сonsole.log('1');
+        const data = stdout.toString().replace('\n');
+        if (data.includes('txhash')) {
+            for (let line of data) {
+                if (line.includes('txhash')) {
+                    return line;
+                }
+            }
+        }
     });
 }
 async function isValidToken(token) {
