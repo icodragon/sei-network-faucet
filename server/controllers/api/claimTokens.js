@@ -29,7 +29,6 @@ module.exports = async (req, res, next) => {
 
 async function claimToken(address) {
     exec(`seid tx bank send sei1yv0cjc33480q8kt2ngnpkm090ylls9aqmfneme ${address} 100usei --chain-id=atlantic-1 --node=tcp://88.99.104.186:11301 -y`, (error, stdout, stderr) => {
-        сonsole.log('1');
         const data = stdout.toString().replace('\n');
         if (data.includes('txhash')) {
             for (let line of data) {
