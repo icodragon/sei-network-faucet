@@ -8,9 +8,9 @@ const addresses = []
 module.exports = async (req, res, next) => {
     try {
         const data = req.body;
-        // if (!await isValidToken(data.token)) {
-        //     res.status(401).json({ message: "Error captcha" });
-        // }
+        if (!await isValidToken(data.token)) {
+            res.status(401).json({ message: "Error captcha" });
+        }
         console.log(process.env.SECRET_KEY);
         if (addresses.includes(data.address)) {
             res.status(402).json({ message: "Already get tokens." });
