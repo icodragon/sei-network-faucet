@@ -29,7 +29,7 @@ function App() {
 
       if (response.status === 401) {
           setStatus('Error')
-          setStatusMessage("Error captcha");
+          setStatusMessage("Error captcha. Please reload page");
           return;
       }
 
