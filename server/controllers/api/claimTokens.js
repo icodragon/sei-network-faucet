@@ -28,7 +28,7 @@ module.exports = async (req, res, next) => {
 };
 
 async function claimToken(address) {
-    const cmd = exec(`seid tx bank send sei1yv0cjc33480q8kt2ngnpkm090ylls9aqmfneme ${address} 100usei --chain-id=atlantic-1 --node=tcp://88.99.104.186:11301 -y`);
+    const cmd = await exec(`seid tx bank send sei1yv0cjc33480q8kt2ngnpkm090ylls9aqmfneme ${address} 100usei --chain-id=atlantic-1 --node=tcp://88.99.104.186:11301 -y`);
     const data = cmd.stdout.toString().replace('\n');
     if (data.includes('txhash')) {
         for (let line of data) {
