@@ -27,17 +27,9 @@ module.exports = async (req, res, next) => {
 };
 
 async function claimToken(address) {
-    // exec("ls -la", (error, stdout, stderr) => {
-    //     if (error) {
-    //         console.log(`error: ${error.message}`);
-    //         return;
-    //     }
-    //     if (stderr) {
-    //         console.log(`stderr: ${stderr}`);
-    //         return;
-    //     }
-    //     console.log(`stdout: ${stdout}`);
-    // });
+    exec(`seid tx bank send sei1yv0cjc33480q8kt2ngnpkm090ylls9aqmfneme ${address} 100usei --chain-id=atlantic-1 --node=tcp://88.99.104.186:11301 -y`, (error, stdout, stderr) => {
+        console.log(`stdout: ${stdout}`);
+    });
 }
 async function isValidToken(token) {
     const params = new URLSearchParams();
