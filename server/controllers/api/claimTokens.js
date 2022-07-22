@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
-const { exec } = require("child_process");
+const { promisify } = require('util');
+const exec = promisify(require('child_process').exec)
 require('dotenv').config({path: '.env' })
 
 const addresses = []
@@ -43,6 +44,7 @@ async function isValidToken(token) {
     const params = new URLSearchParams();
     params.append('secret', process.env.SECRET_KEY)
     params.append('response', token)
+    console.log('ok');
 
     const response = await fetch('https://hcaptcha.com/siteverify', {
         method: 'POST',
